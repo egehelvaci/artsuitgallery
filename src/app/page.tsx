@@ -1,103 +1,167 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      {/* Hero Section - Modernleştirilmiş */}
+      <section className="relative h-[600px] flex items-center overflow-hidden">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://s3.tebi.io/artsuitgallery/pexels-atlasworld-1674049.jpg"
+            alt="Art Suites Gallery Hero"
+            fill
+            priority
+            className="object-cover"
+            style={{filter: "brightness(0.8) contrast(1.1)"}}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        
+        {/* Sanatsal Dekoratif Elemanlar */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[1]">
+          <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gray-500/10 blur-3xl"></div>
+          <div className="absolute top-40 right-10 w-80 h-80 rounded-full bg-gray-500/10 blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-gray-500/10 blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-bold text-gray-100 mb-6 tracking-tight">
+              ART SUITES GALLERY
+            </h1>
+            <p className="text-xl text-gray-300 mb-10 leading-relaxed">
+              SANAT GALERİSİNE HOŞ GELDİNİZ
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link 
+                href="/koleksiyonlar" 
+                className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-sm border border-white/20 transition-all hover:scale-105"
+              >
+                Koleksiyonları Keşfet
+              </Link>
+              <Link 
+                href="/sanatcilar" 
+                className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-sm border border-white/20 transition-all hover:scale-105"
+              >
+                Sanatçıları Keşfet
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Kategori Bölümleri - Modernleştirilmiş */}
+      <section className="py-24 bg-white relative">
+        <div className="absolute inset-0 bg-[url('/texture.svg')] opacity-5 mix-blend-multiply pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="relative inline-block">
+                Sanat Dünyasını Keşfedin
+                <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-pink-500"></span>
+              </span>
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Modern sanatın büyüleyici dünyasında bir yolculuğa çıkın ve sanatseverlerin dikkatini çeken koleksiyonlarımızı inceleyin.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl mx-auto">
+            {/* Sanatçılar - Modernleştirilmiş */}
+            <div className="group">
+              <div className="w-full h-96 bg-gray-200 mb-6 overflow-hidden relative rounded-2xl shadow-xl">
+                <Image
+                  src="https://s3.tebi.io/artsuitgallery/pablo-picasso-hayati-eserleri-ve-bilinmeyenleri-5.jpg"
+                  alt="Pablo Picasso"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70"></div>
+                <div className="absolute bottom-0 left-0 p-6 w-full">
+                  <h2 className="text-3xl font-bold text-white mb-2">İLHAM VEREN SANATÇILAR</h2>
+                  <Link
+                    href="/sanatcilar"
+                    className="inline-flex items-center text-amber-300 font-medium group-hover:translate-x-2 transition-transform"
+                  >
+                    Tüm Sanatçılar
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            
+            {/* Koleksiyonlar - Modernleştirilmiş */}
+            <div className="group">
+              <div className="w-full h-96 bg-gray-200 mb-6 overflow-hidden relative rounded-2xl shadow-xl">
+                <Image
+                  src="https://s3.tebi.io/artsuitgallery/pexels-prismattco-2372978.jpg"
+                  alt="Sanat Koleksiyonu"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70"></div>
+                <div className="absolute bottom-0 left-0 p-6 w-full">
+                  <h2 className="text-3xl font-bold text-white mb-2">KOLEKSİYONLAR</h2>
+                  <Link
+                    href="/koleksiyonlar"
+                    className="inline-flex items-center text-amber-300 font-medium group-hover:translate-x-2 transition-transform"
+                  >
+                    Tüm Koleksiyonlar
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Hakkında Bölümü - Modernleştirilmiş */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100"></div>
+        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 rounded-full bg-indigo-100 blur-3xl opacity-70"></div>
+        <div className="absolute bottom-0 left-0 -mb-24 -ml-24 w-64 h-64 rounded-full bg-amber-100 blur-3xl opacity-70"></div>
+        
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-lg rounded-3xl p-12 shadow-xl border border-white/50">
+            <h2 className="text-4xl font-bold mb-8 text-center">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-pink-600">
+                Art Suites Gallery Hakkında
+              </span>
+            </h2>
+            <p className="text-gray-700 mb-10 text-lg leading-relaxed">
+              Art Suites Gallery, çağdaş sanatın en etkileyici örneklerini bir araya getiren 
+              dijital bir sanat platformudur. Amacımız, sanatçıları ve eserlerini geniş 
+              kitlelere ulaştırarak sanat sevgisini yaygınlaştırmaktır.
+            </p>
+            <div className="grid grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl text-center">
+                <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white mb-4 shadow-lg">
+                  <span className="text-xl font-bold">10+</span>
+                </div>
+                <p className="text-amber-900 font-medium">Sanatçı</p>
+              </div>
+              <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl text-center">
+                <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-indigo-400 to-indigo-600 text-white mb-4 shadow-lg">
+                  <span className="text-xl font-bold">50+</span>
+                </div>
+                <p className="text-indigo-900 font-medium">Koleksiyon</p>
+              </div>
+              <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-xl text-center">
+                <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 text-white mb-4 shadow-lg">
+                  <span className="text-xl font-bold">1000+</span>
+                </div>
+                <p className="text-pink-900 font-medium">Eser</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
