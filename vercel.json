@@ -22,6 +22,14 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "DATABASE_URL": "postgresql://neondb_owner:npg_wYBnTOp45sdk@ep-gentle-salad-a2x0bd78-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require",
+    "NEXTAUTH_SECRET": "9c8a8f99d1926d3a0ed1b72043b0f7a234b3a7a149cdb2b0ffde6c03d5ad27d4",
+    "NEXTAUTH_URL": "http://localhost:3000",
+    "NEXT_PUBLIC_TEBI_ENDPOINT": "https://s3.tebi.io",
+    "NEXT_PUBLIC_TEBI_ACCESS_KEY": "0AlK8hps15wf3pqg",
+    "NEXT_PUBLIC_TEBI_SECRET_KEY": "bJpzhQ5LBpWD6HyIMjEBg0hNKgQdY2oESYGcBwYB",
+    "NEXT_PUBLIC_TEBI_BUCKET_NAME": "artsuitgallery",
+    "JWT_SECRET": "art-suit-gallery-secret-key"
   }
 }
