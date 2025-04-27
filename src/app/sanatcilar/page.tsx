@@ -28,15 +28,15 @@ async function getArtists() {
     // Mevcut URL'i belirle
     const baseUrl = process.env.VERCEL_URL 
       ? `https://${process.env.VERCEL_URL}` 
-      : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+      : process.env.NEXTAUTH_URL || 'http://localhost:3000';
+    
+    console.log('Kullanılan base URL:', baseUrl);
     
     // API endpoint'e istek at
     const res = await fetch(`${baseUrl}/api/artists`, {
-      next: { revalidate: 60 }, // 60 saniyede bir yeniden doğrula, 0 yerine
+      cache: 'no-store', // ISR yerine SSR kullan
       headers: {
         'Content-Type': 'application/json',
-        // Eğer aynı alan adında çalışıyorsa, host header'ı ekle
-        'Host': process.env.VERCEL_URL || 'localhost:3000',
       },
     });
     
