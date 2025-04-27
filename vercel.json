@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "regions": ["fra1"],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization" }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/keep-alive",
+      "schedule": "0 */6 * * *"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "DATABASE_URL": "${DATABASE_URL}",
+    "NEXTAUTH_SECRET": "${NEXTAUTH_SECRET}",
+    "NEXTAUTH_URL": "https://artsuitgallery.vercel.app",
+    "NEXT_PUBLIC_TEBI_ENDPOINT": "https://s3.tebi.io",
+    "NEXT_PUBLIC_TEBI_ACCESS_KEY": "${NEXT_PUBLIC_TEBI_ACCESS_KEY}",
+    "NEXT_PUBLIC_TEBI_SECRET_KEY": "${NEXT_PUBLIC_TEBI_SECRET_KEY}",
+    "NEXT_PUBLIC_TEBI_BUCKET_NAME": "artsuitgallery",
+    "JWT_SECRET": "${JWT_SECRET}"
+  }
+}
