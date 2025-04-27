@@ -17,8 +17,6 @@ export async function POST(request: NextRequest) {
     
     // Veritabanından admin kullanıcısını kontrol et
     console.log('Querying database for user:', email);
-    console.log('DATABASE_URL:', process.env.DATABASE_URL ? 'Set' : 'Not set');
-    
     let user;
     try {
       user = await prisma.admin.findUnique({
@@ -27,11 +25,7 @@ export async function POST(request: NextRequest) {
       console.log('User found:', user ? 'Yes' : 'No');
     } catch (dbError) {
       console.error('Database error:', dbError);
-      return NextResponse.json({ 
-        message: 'Veritabanı hatası', 
-        error: String(dbError),
-        details: JSON.stringify(dbError, null, 2)
-      }, { status: 500 });
+      return NextResponse.json({ message: 'Veritabanı hatası', error: String(dbError) }, { status: 500 });
     }
     
     if (!user) {
