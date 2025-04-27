@@ -83,6 +83,8 @@ export default function CollectionsPage() {
       if (isInitialLoad) setLoading(true);
       else setLoadingMore(true);
       
+      // Client-side fetch olduğu için göreceli URL kullanabiliriz.
+      // Bu, window.location.origin'a göre otomatik olarak çözümlenir
       let url = `/api/collections?page=${page}&limit=50`; // Her bir yüklemede 50 koleksiyon
       if (query) url += `&query=${encodeURIComponent(query)}`;
       if (artistQuery) url += `&artist=${encodeURIComponent(artistQuery)}`;
