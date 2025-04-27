@@ -10,8 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
 // Tebi.io API bilgileri
 const TEBI_ACCESS_KEY = process.env.NEXT_PUBLIC_TEBI_ACCESS_KEY || '';
 const TEBI_SECRET_KEY = process.env.NEXT_PUBLIC_TEBI_SECRET_KEY || '';
-const TEBI_ENDPOINT = process.env.NEXT_PUBLIC_TEBI_ENDPOINT || 'https://s3.tebi.io';
-const TEBI_BUCKET = process.env.NEXT_PUBLIC_TEBI_BUCKET || 'artsuitgallery';
+const TEBI_ENDPOINT = (process.env.NEXT_PUBLIC_TEBI_ENDPOINT || 'https://s3.tebi.io').replace('ttps://', 'https://');
+const TEBI_BUCKET = process.env.NEXT_PUBLIC_TEBI_BUCKET_NAME || 'artsuitgallery';
 
 // Tebi.io konfigürasyon nesnesi
 export const tebiConfig = {

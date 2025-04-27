@@ -32,8 +32,11 @@ async function getArtists() {
     
     console.log('Kullanılan base URL:', baseUrl);
     
-    // API endpoint'e istek at
-    const res = await fetch(`${baseUrl}/api/artists`, {
+    // API endpoint'e istek at - önce doğrudan API endpoint'i deneyelim
+    const apiEndpoint = '/api/artists';
+    console.log('API endpoint:', apiEndpoint);
+    
+    const res = await fetch(apiEndpoint, {
       cache: 'no-store', // SSR kullan
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +52,30 @@ async function getArtists() {
         statusText: res.statusText
       });
       
-      throw new Error(`Sanatçılar getirilemedi: ${res.status} ${res.statusText}`);
+      // Farklı bir URL ile deneyelim
+      console.log('Alternatif URL ile deneniyor:', `${baseUrl}/api/artists`);
+      
+      const alternativeRes = await fetch(`${baseUrl}/api/artists`, {
+        cache: 'no-store',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        next: {
+          revalidate: 0
+        }
+      });
+      
+      if (!alternativeRes.ok) {
+        console.error('Alternatif URL ile sanatçı getirme API cevabı:', {
+          status: alternativeRes.status,
+          statusText: alternativeRes.statusText
+        });
+        
+        throw new Error(`Sanatçılar getirilemedi: ${alternativeRes.status} ${alternativeRes.statusText}`);
+      }
+      
+      const data = await alternativeRes.json();
+      return data;
     }
     
     const data = await res.json();

@@ -8,7 +8,17 @@ const globalForPrisma = global as unknown as {
 // Veritabanı bilgileri
 const dbUrl = process.env.DATABASE_URL;
 
-console.log('Connecting to database with URL:', dbUrl);
+console.log('Connecting to database with URL:', dbUrl ? 'DB_URL mevcut' : 'DB_URL yok!');
+
+// DB URL yoksa hata göster
+if (!dbUrl) {
+  console.error('DATABASE_URL ortam değişkeni tanımlanmamış! Veritabanı bağlantısı başarısız olabilir.');
+  console.error('Mevcut ortam değişkenleri:', {
+    NODE_ENV: process.env.NODE_ENV,
+    VERCEL_URL: process.env.VERCEL_URL,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL
+  });
+}
 
 export const prisma =
   globalForPrisma.prisma ??
