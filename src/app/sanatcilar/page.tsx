@@ -15,50 +15,46 @@ interface Artist {
   id: string;
   name: string;
   slug: string;
-  biography?: string;
+  biography?: string | null;
   artworks: string[];
   firstImage?: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 }
 
 // Sanatçıları API'den getir
 async function getArtists() {
   try {
-    // Kesinlikle mutlak URL kullanmamız gerekli - birkaç alternatif kaynak kullan
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
-                     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) || 
-                     process.env.NEXTAUTH_URL || 
-                     'https://artsuitgallery.vercel.app'; // Direkt olarak projenizin canlı URL'si
+    // Server-side kodu olduğu için doğrudan veritabanından almayı deneyelim
+    const { getAllArtists } = await import('@/lib/prisma/artists');
     
-    console.log('Kullanılan base URL:', baseUrl);
+    console.log('Doğrudan veritabanından sanatçıları getirme denenecek');
     
-    // Tam URL'yi API çağrısında kullan
-    const apiUrl = new URL('/api/artists', baseUrl).toString();
-    console.log('Tam API URL:', apiUrl);
-    
-    // Artık fetch'i normal şekilde yapıyoruz, API public olduğu için token'a gerek yok
-    const res = await fetch(apiUrl, {
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      next: {
-        revalidate: 0 // Caching'i devre dışı bırak
-      }
+    // Doğrudan prisma fonksiyonunu çağır
+    const result = await getAllArtists({
+      page: 1,
+      limit: 20,
+      orderBy: 'name',
+      orderDirection: 'asc',
     });
     
-    if (!res.ok) {
-      console.error('Sanatçı getirme API cevabı:', {
-        status: res.status,
-        statusText: res.statusText
-      });
+    // Sanatçı listesi ile ilk resimleri birleştir
+    const artistsWithImage = result.artists.map(artist => {
+      // Eğer sanatçının artworks dizisi varsa ilk elemanı al, yoksa boş string
+      const firstImage = artist.artworks && artist.artworks.length > 0 
+        ? artist.artworks[0] 
+        : '';
       
-      throw new Error(`Sanatçılar getirilemedi: ${res.status} ${res.statusText}`);
-    }
+      return {
+        ...artist,
+        firstImage
+      };
+    });
     
-    const data = await res.json();
-    return data;
+    return {
+      artists: artistsWithImage,
+      pagination: result.pagination
+    };
   } catch (error) {
     console.error('Sanatçılar yüklenirken hata:', error);
     return { artists: [], pagination: { total: 0, page: 1, pageSize: 20, pageCount: 0 } };
