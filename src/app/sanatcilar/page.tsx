@@ -29,7 +29,7 @@ async function getArtists() {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
                      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) || 
                      process.env.NEXTAUTH_URL || 
-                     'http://localhost:3000';
+                     'https://artsuitgallery.vercel.app'; // Direkt olarak projenizin canlı URL'si
     
     console.log('Kullanılan base URL:', baseUrl);
     
@@ -37,22 +37,12 @@ async function getArtists() {
     const apiUrl = new URL('/api/artists', baseUrl).toString();
     console.log('Tam API URL:', apiUrl);
     
-    // JWT Token'ı al (server-side)
-    const token = process.env.API_ACCESS_TOKEN || '';
-    console.log('API token kullanılıyor mu:', !!token);
-    
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
-    
-    // Token varsa Authorization header'ını ekle
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-    }
-    
+    // Artık fetch'i normal şekilde yapıyoruz, API public olduğu için token'a gerek yok
     const res = await fetch(apiUrl, {
       cache: 'no-store',
-      headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       next: {
         revalidate: 0 // Caching'i devre dışı bırak
       }

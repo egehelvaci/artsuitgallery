@@ -57,10 +57,17 @@ export async function GET(request: NextRequest) {
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     };
     
-    // Yetkilendirme kontrolü - geçici olarak devre dışı
-    const isPublicRoute = process.env.ENABLE_PUBLIC_API === 'true';
+    // Debug: Gelen istek bilgilerini loglayalım
+    console.log('API İsteği Alındı:', request.url);
+    console.log('İstek Başlıkları:', Object.fromEntries(request.headers));
+    
+    // Yetkilendirme kontrolü - şimdilik API'yi tamamen public yapıyoruz
+    const isPublicRoute = true; // process.env.ENABLE_PUBLIC_API === 'true';
+    console.log('API Public mi?', isPublicRoute);
+    
     if (!isPublicRoute) {
       const isAuthenticated = await verifyToken(request);
+      console.log('Yetkilendirme durumu:', isAuthenticated);
       
       if (!isAuthenticated) {
         console.log('API erişimi reddedildi: Yetkisiz erişim');
@@ -87,6 +94,8 @@ export async function GET(request: NextRequest) {
       orderDirection,
       search
     });
+
+    console.log('Sanatçılar başarıyla getirildi, toplam:', result.artists.length);
 
     // Sanatçı listesi ile ilk resimleri birleştir
     const artistsWithImage = result.artists.map(artist => {
