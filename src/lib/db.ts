@@ -1,12 +1,12 @@
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client';
 
 // Geliştirme ortamında bağlantı havuzunu önlemek için
 const globalForPrisma = global as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-// Veritabanı bilgileri - sadece process.env.DATABASE_URL kullan, fallback yapma
-const dbUrl = process.env.DATABASE_URL;;
+// Veritabanı bilgileri
+const dbUrl = process.env.DATABASE_URL;
 
 console.log('Connecting to database with URL:', dbUrl);
 

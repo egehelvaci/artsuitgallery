@@ -25,7 +25,7 @@ interface Artist {
 // Sanatçıları API'den getir
 async function getArtists() {
   try {
-    // Mevcut URL'i belirle
+    // Mevcut URL'i belirle - deployment URL'i tercih et
     const baseUrl = process.env.VERCEL_URL 
       ? `https://${process.env.VERCEL_URL}` 
       : process.env.NEXTAUTH_URL || 'http://localhost:3000';
@@ -34,13 +34,21 @@ async function getArtists() {
     
     // API endpoint'e istek at
     const res = await fetch(`${baseUrl}/api/artists`, {
-      cache: 'no-store', // ISR yerine SSR kullan
+      cache: 'no-store', // SSR kullan
       headers: {
         'Content-Type': 'application/json',
       },
+      next: {
+        revalidate: 0 // Disable caching completely
+      }
     });
     
     if (!res.ok) {
+      console.error('Sanatçı getirme API cevabı:', {
+        status: res.status,
+        statusText: res.statusText
+      });
+      
       throw new Error(`Sanatçılar getirilemedi: ${res.status} ${res.statusText}`);
     }
     
