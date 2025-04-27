@@ -11,7 +11,7 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:push": "prisma db push",
     "prisma:seed": "npx tsx prisma/seed.ts",
-    "vercel-build": "NEXTAUTH_URL=${VERCEL_URL:+https://$VERCEL_URL} prisma generate && next build",
+    "vercel-build": "NEXTAUTH_URL=${VERCEL_URL:+https://$VERCEL_URL} NEXT_PUBLIC_BASE_URL=${VERCEL_URL:+https://$VERCEL_URL} prisma generate && next build",
     "postinstall": "prisma generate"
   },
   "prisma": {

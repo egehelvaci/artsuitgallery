@@ -25,24 +25,25 @@ interface Artist {
 // Sanatçıları API'den getir
 async function getArtists() {
   try {
-    // Mevcut URL'i belirle - deployment URL'i tercih et
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : process.env.NEXTAUTH_URL || 'http://localhost:3000';
+    // Kesinlikle mutlak URL kullanmamız gerekli - birkaç alternatif kaynak kullan
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
+                     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) || 
+                     process.env.NEXTAUTH_URL || 
+                     'http://localhost:3000';
     
     console.log('Kullanılan base URL:', baseUrl);
     
-    // API endpoint'e istek at - önce doğrudan API endpoint'i deneyelim
-    const apiEndpoint = '/api/artists';
-    console.log('API endpoint:', apiEndpoint);
+    // Tam URL'yi API çağrısında kullan
+    const apiUrl = new URL('/api/artists', baseUrl).toString();
+    console.log('Tam API URL:', apiUrl);
     
-    const res = await fetch(apiEndpoint, {
-      cache: 'no-store', // SSR kullan
+    const res = await fetch(apiUrl, {
+      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
       },
       next: {
-        revalidate: 0 // Disable caching completely
+        revalidate: 0 // Caching'i devre dışı bırak
       }
     });
     
@@ -52,30 +53,7 @@ async function getArtists() {
         statusText: res.statusText
       });
       
-      // Farklı bir URL ile deneyelim
-      console.log('Alternatif URL ile deneniyor:', `${baseUrl}/api/artists`);
-      
-      const alternativeRes = await fetch(`${baseUrl}/api/artists`, {
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        next: {
-          revalidate: 0
-        }
-      });
-      
-      if (!alternativeRes.ok) {
-        console.error('Alternatif URL ile sanatçı getirme API cevabı:', {
-          status: alternativeRes.status,
-          statusText: alternativeRes.statusText
-        });
-        
-        throw new Error(`Sanatçılar getirilemedi: ${alternativeRes.status} ${alternativeRes.statusText}`);
-      }
-      
-      const data = await alternativeRes.json();
-      return data;
+      throw new Error(`Sanatçılar getirilemedi: ${res.status} ${res.statusText}`);
     }
     
     const data = await res.json();
