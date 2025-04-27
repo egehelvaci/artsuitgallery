@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllArtists, createArtist } from "@/lib/prisma/artists";
+import jwt from 'jsonwebtoken';
 
 // CORS başlıkları
 const corsHeaders = {
@@ -13,6 +14,39 @@ export async function OPTIONS() {
   return NextResponse.json({}, { headers: corsHeaders });
 }
 
+// Token doğrulama fonksiyonu
+async function verifyToken(request: NextRequest) {
+  // API Key kontrolü - basit API anahtarı yetkilendirmesi için
+  const apiKey = process.env.API_ACCESS_TOKEN;
+  const apiKeyFromHeader = request.headers.get('x-api-key');
+  
+  if (apiKey && apiKeyFromHeader === apiKey) {
+    return true;
+  }
+  
+  // JWT Token kontrolü
+  const authHeader = request.headers.get('authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return false;
+  }
+  
+  const token = authHeader.substring(7);
+  const JWT_SECRET = process.env.JWT_SECRET;
+  
+  if (!JWT_SECRET) {
+    console.error('JWT_SECRET çevresel değişkeni tanımlanmamış');
+    return false;
+  }
+  
+  try {
+    jwt.verify(token, JWT_SECRET);
+    return true;
+  } catch (error) {
+    console.error('Token doğrulama hatası:', error);
+    return false;
+  }
+}
+
 // Tüm sanatçıları getir
 export async function GET(request: NextRequest) {
   try {
@@ -22,6 +56,20 @@ export async function GET(request: NextRequest) {
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     };
+    
+    // Yetkilendirme kontrolü - geçici olarak devre dışı
+    const isPublicRoute = process.env.ENABLE_PUBLIC_API === 'true';
+    if (!isPublicRoute) {
+      const isAuthenticated = await verifyToken(request);
+      
+      if (!isAuthenticated) {
+        console.log('API erişimi reddedildi: Yetkisiz erişim');
+        return NextResponse.json(
+          { error: 'Bu API endpoint\'ine erişim için yetkilendirme gereklidir.' },
+          { status: 401, headers }
+        );
+      }
+    }
 
     // URL parametrelerini al
     const { searchParams } = new URL(request.url);

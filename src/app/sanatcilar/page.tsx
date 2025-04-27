@@ -37,11 +37,22 @@ async function getArtists() {
     const apiUrl = new URL('/api/artists', baseUrl).toString();
     console.log('Tam API URL:', apiUrl);
     
+    // JWT Token'ı al (server-side)
+    const token = process.env.API_ACCESS_TOKEN || '';
+    console.log('API token kullanılıyor mu:', !!token);
+    
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    
+    // Token varsa Authorization header'ını ekle
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
     const res = await fetch(apiUrl, {
       cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       next: {
         revalidate: 0 // Caching'i devre dışı bırak
       }
