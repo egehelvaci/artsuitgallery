@@ -38,7 +38,7 @@ const Header = () => {
   ];
 
   return (
-    <header className={`bg-white py-3 shadow-sm sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}>
+    <header className={`bg-white dark:bg-gray-900 py-3 shadow-sm sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}>
       <nav className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
@@ -63,8 +63,8 @@ const Header = () => {
               href={item.href}
               className={`${
                 pathname === item.href
-                  ? 'text-[#8B0000] font-medium'
-                  : 'text-gray-800 hover:text-[#8B0000]'
+                  ? 'text-[#8B0000] dark:text-[#ff6b6b] font-medium'
+                  : 'text-gray-800 dark:text-gray-200 hover:text-[#8B0000] dark:hover:text-[#ff6b6b]'
               } text-sm font-medium transition-colors tracking-wide`}
             >
               {item.name}
@@ -74,7 +74,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? "Menüyü Kapat" : "Menüyü Aç"}
         >
@@ -96,8 +96,8 @@ const Header = () => {
 
         {/* Mobile Menu - Tam ekran versiyonu */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 bg-white z-50 md:hidden flex flex-col">
-            <div className="flex justify-between items-center p-4 border-b">
+          <div className="fixed inset-0 bg-white dark:bg-gray-900 z-50 md:hidden flex flex-col">
+            <div className="flex justify-between items-center p-4 border-b dark:border-gray-700">
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
                 <div className="w-40 h-20 relative">
                   <Image 
@@ -110,7 +110,7 @@ const Header = () => {
                 </div>
               </Link>
               <button
-                className="text-gray-700 focus:outline-none"
+                className="text-gray-700 dark:text-gray-200 focus:outline-none"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Menüyü Kapat"
               >
@@ -133,8 +133,8 @@ const Header = () => {
                   href={item.href}
                   className={`${
                     pathname === item.href
-                      ? 'text-[#8B0000] font-medium'
-                      : 'text-gray-800 hover:text-[#8B0000]'
+                      ? 'text-[#8B0000] dark:text-[#ff6b6b] font-medium'
+                      : 'text-gray-800 dark:text-gray-200 hover:text-[#8B0000] dark:hover:text-[#ff6b6b]'
                   } py-5 text-center text-xl font-medium transition-colors`}
                   onClick={() => setMobileMenuOpen(false)}
                 >

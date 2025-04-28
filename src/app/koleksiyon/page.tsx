@@ -174,11 +174,12 @@ export default function CollectionsPage() {
     return "BİLİNMEYEN SANATÇI";
   };
 
-  // 977- ile başlayan başlıkları temizle
+  // Başlıktaki sayısal ID'leri temizle
   const cleanTitle = (title: string): string => {
-    // 977- ile başlayan başlıkları temizle
-    if (title.startsWith('977-')) {
-      return title.substring(4);
+    // Sayısal ID'ler ile başlayan başlıkları temizle (örn: 977-, 976-, 975-, 974- vb.)
+    const regex = /^\d{3,4}-/;
+    if (regex.test(title)) {
+      return title.replace(regex, '');
     }
     return title;
   };
@@ -238,37 +239,39 @@ export default function CollectionsPage() {
                 <div 
                   key={collection.id}
                   ref={index === collections.length - 1 ? lastCollectionElementRef : undefined}
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
                 >
-                  <Link
-                    href={`/koleksiyon/${collection.slug || collection.id}`}
-                    className="flex flex-col h-full"
+                  <div 
+                    className="h-40 sm:h-48 md:h-56 bg-gray-100 dark:bg-gray-700 relative cursor-pointer" 
+                    onClick={() => {
+                      const imageUrl = getImageUrl(collection);
+                      if (imageUrl) {
+                        openImageModal(imageUrl, collection.title);
+                      }
+                    }}
                   >
-                    <div 
-                      className="h-40 sm:h-48 md:h-56 bg-gray-100 relative cursor-pointer" 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const imageUrl = getImageUrl(collection);
-                        if (imageUrl) {
-                          openImageModal(imageUrl, collection.title);
-                        }
-                      }}
+                    <Image
+                      src={getImageUrl(collection)}
+                      alt={collection.title}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                      className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  
+                  <div className="p-3 md:p-4 flex-grow flex flex-col">
+                    <Link
+                      href={`/koleksiyon/${collection.slug || collection.id}`}
+                      className="hover:text-[#8B0000] dark:hover:text-[#ff6b6b] transition-colors"
                     >
-                      <Image
-                        src={getImageUrl(collection)}
-                        alt={collection.title}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    
-                    <div className="p-3 md:p-4 flex-grow flex flex-col">
-                      <p className="text-[#8B0000] text-xs md:text-sm mt-auto font-medium" title={getArtistName(collection)}>
-                        {getArtistName(collection)}
-                      </p>
-                    </div>
-                  </Link>
+                      <h3 className="font-medium text-xs sm:text-sm md:text-base mb-1 md:mb-2 line-clamp-2 text-gray-900 dark:text-gray-100" title={collection.title}>
+                        {cleanTitle(collection.title)}
+                      </h3>
+                    </Link>
+                    <p className="text-[#8B0000] dark:text-[#ff6b6b] text-xs md:text-sm mt-auto font-medium" title={getArtistName(collection)}>
+                      {getArtistName(collection)}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -300,7 +303,7 @@ export default function CollectionsPage() {
               </svg>
             </button>
             
-            <div className="relative pt-[56.25%] md:pt-[75%] overflow-hidden rounded-md">
+            <div className="relative pt-[56.25%] md:pt-[75%] overflow-hidden rounded-md bg-black/50">
               <Image
                 src={selectedImage}
                 alt={selectedTitle || "Sanat Eseri"}
@@ -312,7 +315,7 @@ export default function CollectionsPage() {
             
             {selectedTitle && (
               <div className="mt-2 md:mt-4 text-center">
-                <h3 className="font-medium text-white text-sm md:text-lg">{getArtistName(collections.find(c => c.title === selectedTitle) || { artist_name: '' })}</h3>
+                <h3 className="font-medium text-white text-sm md:text-lg">{cleanTitle(selectedTitle)}</h3>
               </div>
             )}
           </div>

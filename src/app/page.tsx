@@ -52,8 +52,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Kategori Bölümleri - Mobil Uyumlu */}
-      <section className="py-16 md:py-24 bg-white relative">
+      {/* Kategori Bölümleri - Mobil ve Dark Tema Uyumlu */}
+      <section className="py-16 md:py-24 bg-white dark:bg-gray-900 relative">
         <div className="absolute inset-0 bg-[url('/texture.svg')] opacity-5 mix-blend-multiply pointer-events-none"></div>
         
         <div className="container mx-auto px-4">
@@ -64,13 +64,13 @@ export default function Home() {
                 <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-pink-500"></span>
               </span>
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">Modern sanatın büyüleyici dünyasında bir yolculuğa çıkın ve sanatseverlerin dikkatini çeken Koleksiyonımızı inceleyin.</p>
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-sm md:text-base">Modern sanatın büyüleyici dünyasında bir yolculuğa çıkın ve sanatseverlerin dikkatini çeken Koleksiyonımızı inceleyin.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-5xl mx-auto">
             {/* Sanatçılar - Mobil Uyumlu */}
             <div className="group">
-              <div className="w-full h-64 md:h-96 bg-gray-200 mb-4 md:mb-6 overflow-hidden relative rounded-2xl shadow-xl">
+              <div className="w-full h-64 md:h-96 bg-gray-200 dark:bg-gray-800 mb-4 md:mb-6 overflow-hidden relative rounded-2xl shadow-xl">
                 <Image
                   src="https://s3.tebi.io/artsuitgallery/pablo-picasso-hayati-eserleri-ve-bilinmeyenleri-5.jpg"
                   alt="Pablo Picasso"
@@ -95,7 +95,7 @@ export default function Home() {
             
             {/* Koleksiyon - Mobil Uyumlu */}
             <div className="group">
-              <div className="w-full h-64 md:h-96 bg-gray-200 mb-4 md:mb-6 overflow-hidden relative rounded-2xl shadow-xl">
+              <div className="w-full h-64 md:h-96 bg-gray-200 dark:bg-gray-800 mb-4 md:mb-6 overflow-hidden relative rounded-2xl shadow-xl">
                 <Image
                   src="https://s3.tebi.io/artsuitgallery/pexels-prismattco-2372978.jpg"
                   alt="Sanat Koleksiyonu"
@@ -121,42 +121,48 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Hakkında Bölümü - Mobil Uyumlu */}
+      {/* Hakkında Bölümü - Mobil ve Dark Tema Uyumlu */}
       <section className="py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100"></div>
-        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 rounded-full bg-indigo-100 blur-3xl opacity-70"></div>
-        <div className="absolute bottom-0 left-0 -mb-24 -ml-24 w-64 h-64 rounded-full bg-amber-100 blur-3xl opacity-70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"></div>
+        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 rounded-full bg-indigo-100 dark:bg-indigo-900/30 blur-3xl opacity-70"></div>
+        <div className="absolute bottom-0 left-0 -mb-24 -ml-24 w-64 h-64 rounded-full bg-amber-100 dark:bg-amber-900/30 blur-3xl opacity-70"></div>
         
         <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-xl border border-white/50">
+          <div className="max-w-4xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-xl border border-white/50 dark:border-gray-700/50">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-pink-600">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-pink-600 dark:from-amber-500 dark:to-pink-500">
                 Art Suites Gallery Hakkında
               </span>
             </h2>
-            <p className="text-gray-700 mb-8 md:mb-10 text-base md:text-lg leading-relaxed">
-              Art Suites Gallery, çağdaş sanatın en etkileyici örneklerini bir araya getiren 
-              dijital bir sanat platformudur. Amacımız, sanatçıları ve eserlerini geniş 
-              kitlelere ulaştırarak sanat sevgisini yaygınlaştırmaktır.
+            <p className="text-gray-700 dark:text-gray-300 mb-8 md:mb-10 text-base md:text-lg leading-relaxed">
+              Art Suites Gallery Mayıs 2011 tarihinde Art Turizm Otelcilik ve Tic. Ltd. Şti. tarafından kuruldu. 
+              Galeri ilk önce Beyoğlu Balo sokakta altı katlı tarihi bir binada faaliyete başladı. 
+              İki yıl sonra Mayıs 2013 tarihinde Bodrum Yalıkavak'taki yerine taşındı.
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 mb-8 md:mb-10 text-base md:text-lg leading-relaxed">
+              Art Suites Gallery her yıl Bodrum'daki galeri mekanında düzenlediği workshop çalışmaları ile 
+              genç ve usta sanatçıları bir araya getirerek, aynı platformda sanatsal fikirlerini paylaşarak 
+              eser üretecekleri bir alan oluşturmuştur. Workshop çalışmaları sonunda düzenlenen sergiler 
+              dışında atölye çalışmaları ve çeşitli sanatsal başlıklar dahilinde seminer ve söyleşiler düzenlenmektedir.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 md:p-6 rounded-xl text-center">
+              <div className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/40 p-4 md:p-6 rounded-xl text-center">
                 <div className="inline-flex items-center justify-center h-12 w-12 md:h-16 md:w-16 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white mb-3 md:mb-4 shadow-lg">
                   <span className="text-lg md:text-xl font-bold">400+</span>
                 </div>
-                <p className="text-amber-900 font-medium text-sm md:text-base">Sanatçı</p>
+                <p className="text-amber-900 dark:text-amber-200 font-medium text-sm md:text-base">Sanatçı</p>
               </div>
-              <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 md:p-6 rounded-xl text-center">
+              <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/40 p-4 md:p-6 rounded-xl text-center">
                 <div className="inline-flex items-center justify-center h-12 w-12 md:h-16 md:w-16 rounded-full bg-gradient-to-r from-indigo-400 to-indigo-600 text-white mb-3 md:mb-4 shadow-lg">
                   <span className="text-lg md:text-xl font-bold">40+</span>
                 </div>
-                <p className="text-indigo-900 font-medium text-sm md:text-base">Workshop</p>
+                <p className="text-indigo-900 dark:text-indigo-200 font-medium text-sm md:text-base">Workshop</p>
               </div>
-              <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-4 md:p-6 rounded-xl text-center">
+              <div className="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/40 p-4 md:p-6 rounded-xl text-center">
                 <div className="inline-flex items-center justify-center h-12 w-12 md:h-16 md:w-16 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 text-white mb-3 md:mb-4 shadow-lg">
                   <span className="text-lg md:text-xl font-bold">1000+</span>
                 </div>
-                <p className="text-pink-900 font-medium text-sm md:text-base">Eser</p>
+                <p className="text-pink-900 dark:text-pink-200 font-medium text-sm md:text-base">Eser</p>
               </div>
             </div>
           </div>

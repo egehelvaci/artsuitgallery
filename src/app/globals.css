@@ -21,12 +21,39 @@
   
   /* Karanlık tema içerisinde açık arka planlı içerikler için metin rengi ayarı */
   .bg-white, .bg-gray-50, .bg-gray-100, .bg-gray-200 {
-    color: #171717;
+    color: #171717 !important;
+  }
+  
+  /* Karanlık tema için beyaz arka planlı kartlar */
+  .bg-white {
+    background-color: #1a1a1a !important;
+    color: #ededed !important;
+  }
+  
+  /* Karanlık tema için kart başlıkları */
+  .text-gray-900 {
+    color: #ededed !important; 
   }
   
   /* Karanlık tema içerisinde metinlerin görünürlüğünü artıran ayarlar */
   .text-gray-600, .text-gray-700, .text-gray-800 {
     color: #d1d5db !important;
+  }
+  
+  /* Koyu tema için sayfa arka planı */
+  body {
+    background-color: #0a0a0a !important;
+    color: #ededed !important;
+  }
+  
+  /* Koyu temada gölge efektleri */
+  .shadow-md, .shadow-lg, .shadow-xl {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  /* Koyu temada vurgu renklerinin görünürlüğünü arttırma */
+  .text-\[\#8B0000\] {
+    color: #ff6b6b !important; /* Daha parlak bir kırmızı */
   }
 }
 
@@ -54,4 +81,9 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+}
+
+/* Tema geçişlerini yumuşatma */
+body, .bg-white, .shadow-md, .shadow-lg {
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
