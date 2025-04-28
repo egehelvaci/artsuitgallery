@@ -174,6 +174,15 @@ export default function CollectionsPage() {
     return "BİLİNMEYEN SANATÇI";
   };
 
+  // 977- ile başlayan başlıkları temizle
+  const cleanTitle = (title: string): string => {
+    // 977- ile başlayan başlıkları temizle
+    if (title.startsWith('977-')) {
+      return title.substring(4);
+    }
+    return title;
+  };
+
   return (
     <div className="py-8 md:py-12">
       <div className="container mx-auto px-4">
@@ -255,9 +264,6 @@ export default function CollectionsPage() {
                     </div>
                     
                     <div className="p-3 md:p-4 flex-grow flex flex-col">
-                      <h3 className="font-medium text-xs sm:text-sm md:text-base mb-1 md:mb-2 line-clamp-2 text-gray-900" title={collection.title}>
-                        {collection.title}
-                      </h3>
                       <p className="text-[#8B0000] text-xs md:text-sm mt-auto font-medium" title={getArtistName(collection)}>
                         {getArtistName(collection)}
                       </p>
@@ -306,7 +312,7 @@ export default function CollectionsPage() {
             
             {selectedTitle && (
               <div className="mt-2 md:mt-4 text-center">
-                <h3 className="font-medium text-white text-sm md:text-lg">{selectedTitle}</h3>
+                <h3 className="font-medium text-white text-sm md:text-lg">{getArtistName(collections.find(c => c.title === selectedTitle) || { artist_name: '' })}</h3>
               </div>
             )}
           </div>
