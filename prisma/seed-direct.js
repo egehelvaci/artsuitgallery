@@ -63,7 +63,7 @@ async function main() {
     console.log(`Sanatçı oluşturuldu: ${artist.name}`);
   }
 
-  // Koleksiyonlar oluştur
+  // Koleksiyon oluştur
   const collections = [
     {
       title: 'Modern Sanat Eserleri',
@@ -107,7 +107,7 @@ async function main() {
     },
   ];
 
-  // Koleksiyonları oluştur
+  // Koleksiyonı oluştur
   for (const collectionData of collections) {
     const { artistSlug, ...collectionFields } = collectionData;
     

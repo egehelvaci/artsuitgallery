@@ -14,7 +14,7 @@ type CollectionUpdateInput = {
   imageUrl?: string;
 };
 
-// Tüm koleksiyonları getir
+// Tüm Koleksiyonı getir
 export async function getAllCollections(options: {
   limit?: number;
   page?: number;
@@ -52,7 +52,7 @@ export async function getAllCollections(options: {
       },
     };
   } catch (error) {
-    console.error('Koleksiyonları getirme hatası:', error);
+    console.error('Koleksiyonı getirme hatası:', error);
     // Boş sonuç döndür
     return {
       collections: [],

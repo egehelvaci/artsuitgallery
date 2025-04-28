@@ -67,7 +67,7 @@ export default function ViewCollectionPage({ params }: { params: { id: string } 
         throw new Error(errorData.message || 'Koleksiyon silme hatası');
       }
       
-      // Başarıyla silindi, koleksiyonlar sayfasına yönlendir
+      // Başarıyla silindi, Koleksiyon sayfasına yönlendir
       router.push('/admin/koleksiyonlar');
       
     } catch (error) {
@@ -97,7 +97,7 @@ export default function ViewCollectionPage({ params }: { params: { id: string } 
               href="/admin/koleksiyonlar" 
               className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md shadow-sm transition-colors"
             >
-              Koleksiyonlara Dön
+              Koleksiyona Dön
             </Link>
           </div>
         </div>

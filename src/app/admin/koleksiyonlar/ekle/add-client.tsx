@@ -195,7 +195,7 @@ export default function AddCollectionClient() {
               href="/admin/koleksiyonlar" 
               className="text-sm font-medium text-green-800 hover:underline"
             >
-              Koleksiyonlar sayfasına dön
+              Koleksiyon sayfasına dön
             </Link>
           </div>
         )}

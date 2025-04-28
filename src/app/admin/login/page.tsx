@@ -55,7 +55,7 @@ export default function AdminLogin() {
                 <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">AS</span>
               </div>
             </div>
-            <h1 className="text-2xl font-bold text-white">Art Suit Gallery</h1>
+            <h1 className="text-2xl font-bold text-white">Art Suites Gallery</h1>
             <p className="text-indigo-100 mt-1">Admin Paneli</p>
           </div>
 
@@ -151,7 +151,7 @@ export default function AdminLogin() {
           {/* Alt bölüm */}
           <div className="px-6 py-4 bg-gray-50 border-t">
             <p className="text-xs text-center text-gray-600">
-              © {new Date().getFullYear()} Art Suit Gallery. Tüm hakları saklıdır.
+              © {new Date().getFullYear()} Art Suites Gallery. Tüm hakları saklıdır.
             </p>
           </div>
         </div>

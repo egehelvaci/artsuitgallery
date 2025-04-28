@@ -63,7 +63,7 @@ async function main() {
     console.log(`Sanatçı oluşturuldu: ${artist.name}`);
   }
 
-  // Koleksiyonlar oluştur (kendi sanatçılarımızın eserleri)
+  // Koleksiyon oluştur (kendi sanatçılarımızın eserleri)
   const collections = [
     {
       title: 'Modern Sanat Eserleri',
@@ -97,7 +97,7 @@ async function main() {
     },
   ];
 
-  // Koleksiyonları oluştur
+  // Koleksiyonı oluştur
   for (const collectionData of collections) {
     const collection = await prisma.collection.upsert({
       where: { slug: collectionData.slug },

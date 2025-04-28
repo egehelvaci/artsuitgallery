@@ -3,16 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-// Metadata import'unu kaldırıyorum
-// import { Metadata } from 'next';
 
-// Metadata tanımını kaldırıyorum. Client component içinde kullanılamaz
-// export const metadata: Metadata = {
-//   title: 'Koleksiyon | Art Suites Gallery',
-//   description: 'Art Suites Gallery\'nin etkileyici sanat Koleksiyonı.',
-// };
-
-// Koleksiyon tipi tanımı
 interface MediaItem {
   id: string;
   url: string;
@@ -30,10 +21,10 @@ interface Collection {
   id: string;
   title: string;
   slug: string;
-  artist_name: string; // Backend ile uyumlu olarak artist_name eklendi
+  artist_name: string;
   artist?: Artist | null;
   mediaItems: MediaItem[];
-  imageUrl?: string; // Backend ile uyumlu olarak imageUrl eklendi
+  imageUrl?: string;
 }
 
 interface PaginationInfo {
@@ -184,26 +175,26 @@ export default function CollectionsPage() {
   };
 
   return (
-    <div className="py-12">
+    <div className="py-8 md:py-12">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">KOLEKSİYONLAR</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 md:mb-3">KOLEKSİYONLAR</h1>
+          <p className="text-gray-600 max-w-2xl mx-auto mb-6 md:mb-8 text-sm md:text-base">
             Art Suites Gallery'nin sanat koleksiyonunu keşfedin.
           </p>
           
-          {/* Arama Kutusu - Sadece sanatçı adı araması bırakıldı */}
-          <div className="max-w-3xl mx-auto mb-8">
+          {/* Arama Kutusu - Mobil Uyumlu */}
+          <div className="max-w-3xl mx-auto mb-6 md:mb-8">
             <div className="relative">
               <input
                 type="text"
                 placeholder="Sanatçı Adı Ara..."
                 value={artistSearchTerm}
                 onChange={(e) => setArtistSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:border-transparent"
+                className="w-full px-3 py-2 md:px-4 md:py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B0000] focus:border-transparent text-sm md:text-base"
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
               </div>
@@ -213,27 +204,27 @@ export default function CollectionsPage() {
 
         {/* Hata mesajı */}
         {error && (
-          <div className="text-center py-8">
-            <p className="text-red-600">{error}</p>
+          <div className="text-center py-4 md:py-8">
+            <p className="text-red-600 text-sm md:text-base">{error}</p>
           </div>
         )}
 
         {/* Yükleniyor göstergesi */}
         {loading && (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-[#8B0000] border-t-transparent"></div>
-            <p className="mt-2 text-gray-600">Koleksiyon yükleniyor...</p>
+          <div className="text-center py-8 md:py-12">
+            <div className="inline-block animate-spin rounded-full h-6 w-6 md:h-8 md:w-8 border-4 border-[#8B0000] border-t-transparent"></div>
+            <p className="mt-2 text-gray-600 text-sm md:text-base">Koleksiyon yükleniyor...</p>
           </div>
         )}
 
-        {/* Koleksiyon gridi - 5 sütun olarak ayarlandı */}
+        {/* Koleksiyon gridi - Mobil Uyumlu */}
         {!loading && collections.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-600">Aramanıza uygun koleksiyon bulunamadı.</p>
+          <div className="text-center py-8 md:py-12">
+            <p className="text-gray-600 text-sm md:text-base">Aramanıza uygun koleksiyon bulunamadı.</p>
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-6">
               {collections.map((collection, index) => (
                 <div 
                   key={collection.id}
@@ -241,7 +232,7 @@ export default function CollectionsPage() {
                   className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
                 >
                   <div 
-                    className="h-56 bg-gray-100 relative cursor-pointer" 
+                    className="h-40 sm:h-48 md:h-56 bg-gray-100 relative cursor-pointer" 
                     onClick={() => {
                       const imageUrl = getImageUrl(collection);
                       if (imageUrl) {
@@ -253,19 +244,21 @@ export default function CollectionsPage() {
                       src={getImageUrl(collection)}
                       alt={collection.title}
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                      className="object-cover"
+                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                      className="object-cover hover:scale-105 transition-transform duration-300"
                     />
-                    {/* Büyütme işareti */}
-                    <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-opacity flex items-center justify-center opacity-0 hover:opacity-100">
-                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                      </svg>
-                    </div>
                   </div>
-                  <div className="p-4 flex-grow flex flex-col">
-                    {/* Sanatçı adı büyük harflerle (getArtistName fonksiyonu artık büyük harfleri dönüyor) */}
-                    <p className="text-gray-800 text-sm font-medium">
+                  
+                  <div className="p-3 md:p-4 flex-grow flex flex-col">
+                    <Link
+                      href={`/koleksiyon/${collection.slug || collection.id}`}
+                      className="hover:text-[#8B0000] transition-colors"
+                    >
+                      <h3 className="font-medium text-xs sm:text-sm md:text-base mb-1 line-clamp-2" title={collection.title}>
+                        {collection.title}
+                      </h3>
+                    </Link>
+                    <p className="text-gray-600 text-xs md:text-sm mt-auto" title={getArtistName(collection)}>
                       {getArtistName(collection)}
                     </p>
                   </div>
@@ -275,70 +268,44 @@ export default function CollectionsPage() {
             
             {/* Daha fazla yükleniyor göstergesi */}
             {loadingMore && (
-              <div className="text-center py-8">
-                <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-[#8B0000] border-t-transparent"></div>
-                <p className="mt-2 text-gray-600">Daha fazla koleksiyon yükleniyor...</p>
-              </div>
-            )}
-            
-            {/* Manuel yükleme butonu - mobil cihazlar için veya otomatik yükleme çalışmadığında */}
-            {!loading && !loadingMore && hasMore && (
-              <div className="text-center mt-12">
-                <button
-                  onClick={loadMoreCollections}
-                  className="px-6 py-3 bg-[#8B0000] text-white rounded-md hover:bg-[#700000] transition-colors"
-                >
-                  Daha Fazla Göster
-                </button>
-              </div>
-            )}
-            
-            {/* Tüm içerik yüklendiğinde göster */}
-            {!loading && !loadingMore && !hasMore && collections.length > 0 && (
-              <div className="text-center mt-8 text-sm text-gray-500">
-                Tüm Koleksiyon yüklendi. Toplam {collections.length} koleksiyon gösteriliyor.
+              <div className="text-center py-6 md:py-8">
+                <div className="inline-block animate-spin rounded-full h-5 w-5 md:h-6 md:w-6 border-4 border-[#8B0000] border-t-transparent"></div>
+                <p className="mt-2 text-gray-600 text-xs md:text-sm">Daha fazla yükleniyor...</p>
               </div>
             )}
           </>
         )}
       </div>
-
-      {/* Resim Modal */}
+      
+      {/* Resim Görüntüleme Modal'ı - Mobil Uyumlu */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
           onClick={closeImageModal}
         >
-          <div 
-            className="relative max-w-5xl max-h-[90vh] w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Kapatma butonu */}
+          <div className="relative w-full max-w-4xl mx-auto">
             <button 
-              className="absolute top-2 right-2 z-10 bg-black bg-opacity-60 rounded-full p-2 text-white hover:bg-opacity-100 transition-colors"
+              className="absolute top-2 right-2 md:top-4 md:right-4 text-white p-2 z-10 bg-black/20 rounded-full hover:bg-black/40"
               onClick={closeImageModal}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             
-            {/* Görsel */}
-            <div className="relative w-full h-[80vh]">
+            <div className="relative pt-[56.25%] md:pt-[75%] overflow-hidden rounded-md">
               <Image
                 src={selectedImage}
-                alt={selectedTitle || "Koleksiyon görseli"}
+                alt={selectedTitle || "Sanat Eseri"}
                 fill
-                sizes="(max-width: 1024px) 100vw, 80vw"
                 className="object-contain"
-                priority
+                onClick={(e) => e.stopPropagation()}
               />
             </div>
             
-            {/* Başlık */}
             {selectedTitle && (
-              <div className="bg-black bg-opacity-60 p-4 text-white text-center">
-                <h3 className="text-xl font-semibold">{selectedTitle}</h3>
+              <div className="mt-2 md:mt-4 text-center">
+                <h3 className="font-medium text-white text-sm md:text-lg">{selectedTitle}</h3>
               </div>
             )}
           </div>

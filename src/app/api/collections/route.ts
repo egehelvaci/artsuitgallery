@@ -54,9 +54,9 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(result, { headers: corsHeaders });
     }
   } catch (error) {
-    console.error('Koleksiyonlar getirilirken hata oluştu:', error);
+    console.error('Koleksiyon getirilirken hata oluştu:', error);
     return NextResponse.json(
-      { error: 'Koleksiyonlar getirilirken bir hata oluştu' },
+      { error: 'Koleksiyon getirilirken bir hata oluştu' },
       { status: 500, headers: corsHeaders }
     );
   }

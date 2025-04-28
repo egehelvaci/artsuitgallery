@@ -2,7 +2,7 @@
 
 ## Proje Tanımı
 
-Sanat galerisi konseptinde geliştirilecek olan bu web sitesi; sanatçılar, koleksiyonlar ve anasayfa olmak üzere üç temel sayfadan oluşacaktır. Site sahibi ilerleyen süreçte yeni sanatçılar ve koleksiyonlar ekleyebilecek ve mevcut içerikleri güncelleyebilecektir.
+Sanat galerisi konseptinde geliştirilecek olan bu web sitesi; sanatçılar, Koleksiyon ve anasayfa olmak üzere üç temel sayfadan oluşacaktır. Site sahibi ilerleyen süreçte yeni sanatçılar ve Koleksiyon ekleyebilecek ve mevcut içerikleri güncelleyebilecektir.
 
 ## Teknolojiler
 - **Frontend:** Next.js (TypeScript)
@@ -26,14 +26,14 @@ Sanat galerisi konseptinde geliştirilecek olan bu web sitesi; sanatçılar, kol
 ### Sayfa ve Bileşen Yapısı
 #### 1. Anasayfa (`/`)
 - [ ] Hero alanı
-- [ ] Galeriden öne çıkan koleksiyonlar
+- [ ] Galeriden öne çıkan Koleksiyon
 - [ ] Öne çıkan sanatçılar
 - [ ] Site hakkında kısa açıklama
 - [ ] Footer
 
-#### 2. Koleksiyonlar Sayfası (`/koleksiyonlar`)
+#### 2. Koleksiyon Sayfası (`/Koleksiyon`)
 - [ ] 1.6GB'lık koleksiyon verileri `load more` ya da `pagination` ile sunulacak
-- [ ] Koleksiyon detay sayfası (`/koleksiyonlar/[slug]`)
+- [ ] Koleksiyon detay sayfası (`/Koleksiyon/[slug]`)
 - [ ] Tebi.io bağlantısı üzerinden resim/video gösterimi
 
 #### 3. Sanatçılar Sayfası (`/sanatcilar`)

@@ -38,7 +38,7 @@ function CollectionsContent() {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
   
-  // Koleksiyonları yükle
+  // Koleksiyonı yükle
   useEffect(() => {
     const fetchCollections = async () => {
       try {
@@ -59,7 +59,7 @@ function CollectionsContent() {
         const response = await fetch(`/api/collections?${params.toString()}`);
         
         if (!response.ok) {
-          throw new Error('Koleksiyonlar yüklenirken bir hata oluştu');
+          throw new Error('Koleksiyon yüklenirken bir hata oluştu');
         }
         
         const data = await response.json();
@@ -72,8 +72,8 @@ function CollectionsContent() {
           setPagination(data.pagination);
         }
       } catch (err) {
-        console.error('Koleksiyonları getirme hatası:', err);
-        setError('Koleksiyonlar yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+        console.error('Koleksiyonı getirme hatası:', err);
+        setError('Koleksiyon yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
       } finally {
         setLoading(false);
       }
@@ -142,7 +142,7 @@ function CollectionsContent() {
   return (
     <div className="px-6 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Koleksiyonlar</h1>
+        <h1 className="text-2xl font-bold">Koleksiyon</h1>
         
         <div className="flex space-x-2">
           <Link 
@@ -189,7 +189,7 @@ function CollectionsContent() {
       {loading ? (
         <div className="bg-white rounded-lg shadow-md p-8 text-center">
           <div className="w-10 h-10 border-t-4 border-indigo-500 border-solid rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500">Koleksiyonlar yükleniyor...</p>
+          <p className="text-gray-500">Koleksiyon yükleniyor...</p>
         </div>
       ) : (
         <div className="bg-white rounded-lg shadow-md overflow-hidden">

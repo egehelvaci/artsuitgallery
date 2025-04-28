@@ -155,7 +155,7 @@ export default function ClientEditCollectionPage({ id }: ClientEditCollectionPag
       // Başarılı
       setSuccessMessage('Koleksiyon başarıyla güncellendi');
       
-      // 2 saniye sonra koleksiyonlar sayfasına yönlendir
+      // 2 saniye sonra Koleksiyon sayfasına yönlendir
       setTimeout(() => {
         router.push('/admin/koleksiyonlar');
       }, 2000);
@@ -193,7 +193,7 @@ export default function ClientEditCollectionPage({ id }: ClientEditCollectionPag
       // Başarılı
       setSuccessMessage('Koleksiyon başarıyla silindi');
       
-      // 2 saniye sonra koleksiyonlar sayfasına yönlendir
+      // 2 saniye sonra Koleksiyon sayfasına yönlendir
       setTimeout(() => {
         router.push('/admin/koleksiyonlar');
       }, 2000);
@@ -227,7 +227,7 @@ export default function ClientEditCollectionPage({ id }: ClientEditCollectionPag
               href="/admin/koleksiyonlar" 
               className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md shadow-sm transition-colors"
             >
-              Koleksiyonlara Dön
+              Koleksiyona Dön
             </Link>
           </div>
         </div>

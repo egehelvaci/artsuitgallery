@@ -48,7 +48,7 @@ export default async function CollectionDetailPage({ params }: { params: { id: s
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Link 
-            href="/Koleksiyon" 
+            href="/koleksiyon" 
             className="text-indigo-600 font-medium hover:text-indigo-500 mb-6 inline-block"
           >
             ← Koleksiyon

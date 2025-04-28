@@ -98,7 +98,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       )
     },
     { 
-      name: 'Koleksiyonlar', 
+      name: 'Koleksiyon', 
       href: '/admin/koleksiyonlar', 
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -123,7 +123,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
           </button>
           
           <div className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">
-            Art Suit Gallery
+            Art Suites Gallery
           </div>
           
           <div className="relative">
@@ -226,7 +226,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         <div className="w-64 bg-gradient-to-b from-indigo-700 to-purple-800 text-white flex flex-col">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center justify-center px-4 py-6 border-b border-indigo-800">
-            <span className="text-xl font-bold">Art Suit Gallery</span>
+            <span className="text-xl font-bold">Art Suites Gallery</span>
           </div>
           
           {/* Menü */}

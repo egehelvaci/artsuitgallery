@@ -206,7 +206,7 @@ export default function BulkAddCollectionPage() {
     }
   };
   
-  // Koleksiyonları oluştur
+  // Koleksiyonı oluştur
   const createCollections = async (uploadedImages: {id: string, imageUrl: string, error?: string}[]) => {
     setIsSubmitting(true);
     setErrorMessage(null);
@@ -290,7 +290,7 @@ export default function BulkAddCollectionPage() {
         return;
       }
       
-      // 2. Koleksiyonları oluştur
+      // 2. Koleksiyonı oluştur
       const createResults = await createCollections(uploadResults);
       
       // Oluşturma sonuçlarını kontrol et
@@ -311,7 +311,7 @@ export default function BulkAddCollectionPage() {
       } else if (successCount > 0 && errorCount > 0) {
         setSuccessMessage(`${successCount} koleksiyon oluşturuldu, ancak ${errorCount} koleksiyon oluşturulamadı.`);
       } else {
-        setErrorMessage('Koleksiyonlar oluşturulamadı. Lütfen tekrar deneyin.');
+        setErrorMessage('Koleksiyon oluşturulamadı. Lütfen tekrar deneyin.');
       }
     } catch (error) {
       console.error('İşlem hatası:', error);
@@ -352,7 +352,7 @@ export default function BulkAddCollectionPage() {
               href="/admin/koleksiyonlar" 
               className="text-sm font-medium text-green-800 hover:underline"
             >
-              Koleksiyonlar sayfasına dön
+              Koleksiyon sayfasına dön
             </Link>
           </div>
         )}
@@ -510,7 +510,7 @@ export default function BulkAddCollectionPage() {
                   {isUploading ? 'Yükleniyor...' : 'İşleniyor...'}
                 </>
               ) : (
-                'Koleksiyonları Oluştur'
+                'Koleksiyonı Oluştur'
               )}
             </button>
           </div>

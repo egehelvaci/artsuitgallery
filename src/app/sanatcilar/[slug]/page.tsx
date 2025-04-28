@@ -44,13 +44,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${artist.name} | Art Suit Gallery`,
+    title: `${artist.name} | Art Suites Gallery`,
     description: artist.biography 
       ? `${artist.name} - ${artist.biography.substring(0, 160)}...` 
-      : `${artist.name} - Art Suit Gallery sanatçısı`,
+      : `${artist.name} - Art Suites Gallery sanatçısı`,
     openGraph: {
       title: artist.name,
-      description: artist.biography ? artist.biography.substring(0, 160) : `${artist.name} - Art Suit Gallery sanatçısı`,
+      description: artist.biography ? artist.biography.substring(0, 160) : `${artist.name} - Art Suites Gallery sanatçısı`,
       type: 'profile',
     },
   };

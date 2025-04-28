@@ -140,14 +140,14 @@ export default function AdminDashboardPage() {
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="p-5 flex justify-between items-center">
                   <div>
-                    <p className="text-gray-500 text-sm uppercase tracking-wider">Koleksiyonlar</p>
+                    <p className="text-gray-500 text-sm uppercase tracking-wider">Koleksiyon</p>
                     <p className="text-3xl font-bold text-gray-900 mt-1">{stats.collectionCount}</p>
                   </div>
                   <CollectionIcon />
                 </div>
                 <div className="bg-emerald-50 px-5 py-2">
                   <Link href="/admin/koleksiyonlar" className="text-sm text-emerald-700 font-medium hover:underline">
-                    Tüm koleksiyonları görüntüle →
+                    Tüm Koleksiyonı görüntüle →
                   </Link>
                 </div>
               </div>
