@@ -231,37 +231,38 @@ export default function CollectionsPage() {
                   ref={index === collections.length - 1 ? lastCollectionElementRef : undefined}
                   className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
                 >
-                  <div 
-                    className="h-40 sm:h-48 md:h-56 bg-gray-100 relative cursor-pointer" 
-                    onClick={() => {
-                      const imageUrl = getImageUrl(collection);
-                      if (imageUrl) {
-                        openImageModal(imageUrl, collection.title);
-                      }
-                    }}
+                  <Link
+                    href={`/koleksiyon/${collection.slug || collection.id}`}
+                    className="flex flex-col h-full"
                   >
-                    <Image
-                      src={getImageUrl(collection)}
-                      alt={collection.title}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-                      className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  
-                  <div className="p-3 md:p-4 flex-grow flex flex-col">
-                    <Link
-                      href={`/koleksiyon/${collection.slug || collection.id}`}
-                      className="hover:text-[#8B0000] transition-colors"
+                    <div 
+                      className="h-40 sm:h-48 md:h-56 bg-gray-100 relative cursor-pointer" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const imageUrl = getImageUrl(collection);
+                        if (imageUrl) {
+                          openImageModal(imageUrl, collection.title);
+                        }
+                      }}
                     >
-                      <h3 className="font-medium text-xs sm:text-sm md:text-base mb-1 line-clamp-2" title={collection.title}>
+                      <Image
+                        src={getImageUrl(collection)}
+                        alt={collection.title}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    
+                    <div className="p-3 md:p-4 flex-grow flex flex-col">
+                      <h3 className="font-medium text-xs sm:text-sm md:text-base mb-1 md:mb-2 line-clamp-2 text-gray-900" title={collection.title}>
                         {collection.title}
                       </h3>
-                    </Link>
-                    <p className="text-gray-600 text-xs md:text-sm mt-auto" title={getArtistName(collection)}>
-                      {getArtistName(collection)}
-                    </p>
-                  </div>
+                      <p className="text-[#8B0000] text-xs md:text-sm mt-auto font-medium" title={getArtistName(collection)}>
+                        {getArtistName(collection)}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
               ))}
             </div>
