@@ -15,19 +15,7 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "destination": "https://artsuites.gallery/$1",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.artsuites.gallery"
-        }
-      ],
-      "permanent": true
-    }
-  ],
+
   "crons": [
     {
       "path": "/api/cron/keep-alive",
