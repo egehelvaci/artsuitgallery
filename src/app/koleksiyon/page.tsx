@@ -227,63 +227,56 @@ export default function CollectionsPage() {
           </div>
         )}
 
-        {/* Koleksiyon gridi - Mobil Uyumlu */}
-        {!loading && collections.length === 0 ? (
-          <div className="text-center py-8 md:py-12">
-            <p className="text-gray-600 text-sm md:text-base">Aramanıza uygun koleksiyon bulunamadı.</p>
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-6">
-              {collections.map((collection, index) => (
-                <div 
-                  key={collection.id}
-                  ref={index === collections.length - 1 ? lastCollectionElementRef : undefined}
-                  className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
-                >
-                  <div 
-                    className="h-40 sm:h-48 md:h-56 bg-gray-100 dark:bg-gray-700 relative cursor-pointer" 
-                    onClick={() => {
-                      const imageUrl = getImageUrl(collection);
-                      if (imageUrl) {
-                        openImageModal(imageUrl, collection.title);
-                      }
-                    }}
-                  >
-                    <Image
-                      src={getImageUrl(collection)}
-                      alt={collection.title}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-                      className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  
-                  <div className="p-3 md:p-4 flex-grow flex flex-col">
-                    <Link
-                      href={`/koleksiyon/${collection.slug || collection.id}`}
-                      className="hover:text-[#8B0000] dark:hover:text-[#ff6b6b] transition-colors"
-                    >
-                      <h3 className="font-medium text-xs sm:text-sm md:text-base mb-1 md:mb-2 line-clamp-2 text-gray-900 dark:text-gray-100" title={collection.title}>
-                        {cleanTitle(collection.title)}
-                      </h3>
-                    </Link>
-                    <p className="text-[#8B0000] dark:text-[#ff6b6b] text-xs md:text-sm mt-auto font-medium" title={getArtistName(collection)}>
-                      {getArtistName(collection)}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Daha fazla yükleniyor göstergesi */}
-            {loadingMore && (
-              <div className="text-center py-6 md:py-8">
-                <div className="inline-block animate-spin rounded-full h-5 w-5 md:h-6 md:w-6 border-4 border-[#8B0000] border-t-transparent"></div>
-                <p className="mt-2 text-gray-600 text-xs md:text-sm">Daha fazla yükleniyor...</p>
+        {/* Koleksiyon */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mt-6">
+          {collections.map((collection, index) => (
+            <div
+              key={collection.id}
+              ref={index === collections.length - 1 ? lastCollectionElementRef : null}
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
+            >
+              <div 
+                className="h-40 sm:h-48 md:h-56 bg-gray-100 relative cursor-pointer"
+                onClick={() => openImageModal(getImageUrl(collection), collection.title || "")}
+              >
+                <Image
+                  src={getImageUrl(collection)}
+                  alt={collection.title || "Koleksiyon Resmi"}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "https://via.placeholder.com/400x300?text=Görsel+Mevcut+Değil";
+                  }}
+                />
               </div>
-            )}
-          </>
+              <div className="p-3 sm:p-4 flex flex-col justify-between flex-grow">
+                <Link
+                  href={`/koleksiyon/${collection.id}`} 
+                  className="hover:text-[#8B0000] transition-colors"
+                >
+                  <h3 className="font-medium text-xs sm:text-sm md:text-base mb-1 md:mb-2 line-clamp-2 text-gray-900" title={collection.title}>
+                    {cleanTitle(collection.title || "İsimsiz Eser")}
+                  </h3>
+                </Link>
+                
+                <p className="text-[#8B0000] text-xs md:text-sm mt-auto font-medium" title={getArtistName(collection)}>
+                  {getArtistName(collection).length > 20 
+                    ? `${getArtistName(collection).substring(0, 20)}...` 
+                    : getArtistName(collection)}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Daha fazla yükleniyor göstergesi */}
+        {loadingMore && (
+          <div className="text-center py-6 md:py-8">
+            <div className="inline-block animate-spin rounded-full h-5 w-5 md:h-6 md:w-6 border-4 border-[#8B0000] border-t-transparent"></div>
+            <p className="mt-2 text-gray-600 text-xs md:text-sm">Daha fazla yükleniyor...</p>
+          </div>
         )}
       </div>
       

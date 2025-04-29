@@ -38,16 +38,16 @@ const Header = () => {
   ];
 
   return (
-    <header className={`bg-white dark:bg-gray-900 py-3 shadow-sm sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}>
+    <header className={`bg-white py-4 shadow-sm sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}>
       <nav className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <div className="w-40 md:w-60 h-20 relative">
+            <div className="w-52 md:w-80 h-24 md:h-28 relative">
               <Image 
                 src="https://s3.tebi.io/artsuitgallery/uploads/artists/1745277173679-logo.jpg"
                 alt="Art Suites Gallery Logo"
                 fill
-                sizes="(max-width: 768px) 120px, 192px"
+                sizes="(max-width: 768px) 208px, 320px"
                 className="object-contain"
                 priority
               />
@@ -63,8 +63,8 @@ const Header = () => {
               href={item.href}
               className={`${
                 pathname === item.href
-                  ? 'text-[#8B0000] dark:text-[#ff6b6b] font-medium'
-                  : 'text-gray-800 dark:text-gray-200 hover:text-[#8B0000] dark:hover:text-[#ff6b6b]'
+                  ? 'text-[#8B0000] font-medium'
+                  : 'text-gray-800 hover:text-[#8B0000]'
               } text-sm font-medium transition-colors tracking-wide`}
             >
               {item.name}
@@ -74,7 +74,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none"
+          className="md:hidden text-gray-700 focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? "Menüyü Kapat" : "Menüyü Aç"}
         >
@@ -96,21 +96,21 @@ const Header = () => {
 
         {/* Mobile Menu - Tam ekran versiyonu */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 bg-white dark:bg-gray-900 z-50 md:hidden flex flex-col">
-            <div className="flex justify-between items-center p-4 border-b dark:border-gray-700">
+          <div className="fixed inset-0 bg-white z-50 md:hidden flex flex-col">
+            <div className="flex justify-between items-center p-4 border-b">
               <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                <div className="w-40 h-20 relative">
+                <div className="w-48 h-24 relative">
                   <Image 
                     src="https://s3.tebi.io/artsuitgallery/uploads/artists/1745277173679-logo.jpg"
                     alt="Art Suites Gallery Logo"
                     fill
-                    sizes="120px"
+                    sizes="192px"
                     className="object-contain"
                   />
                 </div>
               </Link>
               <button
-                className="text-gray-700 dark:text-gray-200 focus:outline-none"
+                className="text-gray-700 focus:outline-none"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Menüyü Kapat"
               >
@@ -133,8 +133,8 @@ const Header = () => {
                   href={item.href}
                   className={`${
                     pathname === item.href
-                      ? 'text-[#8B0000] dark:text-[#ff6b6b] font-medium'
-                      : 'text-gray-800 dark:text-gray-200 hover:text-[#8B0000] dark:hover:text-[#ff6b6b]'
+                      ? 'text-[#8B0000] font-medium'
+                      : 'text-gray-800 hover:text-[#8B0000]'
                   } py-5 text-center text-xl font-medium transition-colors`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
