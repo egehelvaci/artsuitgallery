@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,6 +14,9 @@ export default {
         tighter: '-0.02em',
         tight: '-0.01em',
       },
+      colors: {
+        maroon: '#8B0000',
+      }
     },
   },
   plugins: [],
