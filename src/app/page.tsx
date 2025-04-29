@@ -104,7 +104,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70"></div>
                 <div className="absolute bottom-0 left-0 p-4 md:p-6 w-full">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">KOLEKSİYONLAR</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">KOLEKSİYON</h2>
                   <Link
                     href="/koleksiyon"
                     className="inline-flex items-center text-amber-300 font-medium group-hover:translate-x-2 transition-transform text-sm md:text-base"

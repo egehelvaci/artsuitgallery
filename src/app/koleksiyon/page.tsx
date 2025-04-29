@@ -188,7 +188,7 @@ export default function CollectionsPage() {
     <div className="py-8 md:py-12">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 md:mb-3">KOLEKSİYONLAR</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 md:mb-3">KOLEKSİYON</h1>
           <p className="text-gray-600 max-w-2xl mx-auto mb-6 md:mb-8 text-sm md:text-base">
             Art Suites Gallery'nin sanat koleksiyonunu keşfedin.
           </p>
