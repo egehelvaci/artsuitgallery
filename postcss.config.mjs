@@ -1,6 +1,11 @@
+import postcssImport from 'postcss-import';
+
 export default {
   plugins: {
-    '@tailwindcss/postcss': {},
+    'postcss-import': {},
+    '@tailwindcss/postcss': {
+      config: './tailwind.config.mjs',
+    },
     autoprefixer: {},
   },
 };
